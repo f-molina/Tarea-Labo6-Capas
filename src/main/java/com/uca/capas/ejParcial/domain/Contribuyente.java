@@ -1,5 +1,10 @@
 package com.uca.capas.ejParcial.domain;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(schema = "public", name = "contribuyente")
@@ -30,7 +38,7 @@ public class Contribuyente {
     private String nit;
 
     @Column(name = "f_fecha_ingreso")
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "c_importancia")
@@ -70,13 +78,25 @@ public class Contribuyente {
         this.nit = nit;
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
+
+    //delegate fecha
+    public String getFechaDelegate(){
+		if(this.fechaIngreso == null){
+			return "";
+		}
+		else{
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String shortdate = this.fechaIngreso.format(formatter);
+			return shortdate;
+		}
+	}
 
     public Importancia getImportancia() {
         return importancia;
@@ -84,5 +104,11 @@ public class Contribuyente {
 
     public void setImportancia(Importancia importancia) {
         this.importancia = importancia;
+    }
+
+    //current date before insert
+    @PrePersist
+    public void prePersist(){
+        this.fechaIngreso = LocalDate.now();
     }
 }

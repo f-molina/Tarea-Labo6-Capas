@@ -51,7 +51,14 @@
           <input type="text" class="form-control" th:field="*{nit}" id="nit" />
           <span th:errors="*{nit}" style="color: #ff0000;"></span>
         </div>
-        
+        <div class="form-group">
+          <input
+            type="hidden"
+            class="form-control"
+            th:field="*{fechaDelegate}"
+            id="fechaDelegate"
+          />
+        </div>
         <div class="form-group">
           <select th:field="*{importancia.cImportancia}">
             <option

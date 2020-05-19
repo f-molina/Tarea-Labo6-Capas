@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Listado</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: 'Montserrat', sans-serif;">
+    <div class="container mt-5 text-center">
+        <div class="card-body">
+      <table class="table-striped table-bordered" width="100%" cellspacing="0">
         <thead>
-            <th>Codigo</th>
-            <th>importancia</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Nit</th>
-            <th>Fecha</th>
+          <th>Codigo</th>
+          <th>Importancia</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Nit</th>
+          <th>Fecha</th>
         </thead>
         <tbody>
-            <tr th:each="v : ${contribuyentes}">
-                <td th:text="${v.codigoContribuyente}"></td>
-                <td th:text="${v.importancia.sImportancia}"></td>
-                <td th:text="${v.nombre}"></td>
-                <td th:text="${v.apellido}"></td>
-                <td th:text="${v.nit}"></td>
-                <td th:text="${v.fechaIngreso}"></td>
-            </tr>   
+          <tr th:each="v : ${contribuyentes}">
+            <td th:text="${v.codigoContribuyente}"></td>
+            <td th:text="${v.importancia.sImportancia}"></td>
+            <td th:text="${v.nombre}"></td>
+            <td th:text="${v.apellido}"></td>
+            <td th:text="${v.nit}"></td>
+            <td th:text="${v.fechaDelegate}"></td>
+          </tr>
         </tbody>
-    </table>
-
-</body>
+      </table>
+    </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
