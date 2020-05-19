@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Ingresar Contribuyentes</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: 'Montserrat', sans-serif;">
+    <div class="container mt-5">
+      <form
+        class="mt-5"
+        method="POST"
+        th:action="@{/insertarContribuyente}"
+        ,
+        th:object="${contribuyentes}"
+      >
+        <div class="form-group">
+          <input
+            type="hidden"
+            class="form-control"
+            th:field="*{codigoContribuyente}"
+            id="codigoContribuyente"
+          />
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            th:field="*{nombre}"
+            id="nombre"
+          />
+          <span th:errors="*{nombre}" style="color: #ff0000;"></span>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            th:field="*{apellido}"
+            id="apellido"
+          />
+          <span th:errors="*{apellido}" style="color: #ff0000;"></span>
+        </div>
+        <div class="form-group">
+          <label for="nit">Nit</label>
+          <input type="text" class="form-control" th:field="*{nit}" id="nit" />
+          <span th:errors="*{nit}" style="color: #ff0000;"></span>
+        </div>
+        
+        <div class="form-group">
+          <select th:field="*{importancia.cImportancia}">
+            <option
+              th:each="im : ${importancias}"
+              th:value="${im.cImportancia}"
+              th:text="${im.sImportancia}"
+            />
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Guardar
+        </button>
+        <a th:href="@{/listado}" class="btn btn-secondary">Ver Contribuyentes</a>
+      </form>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
