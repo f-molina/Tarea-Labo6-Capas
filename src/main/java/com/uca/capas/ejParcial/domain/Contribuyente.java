@@ -1,11 +1,7 @@
 package com.uca.capas.ejParcial.domain;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,8 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema = "public", name = "contribuyente")
@@ -28,12 +24,18 @@ public class Contribuyente {
     @Column(name = "c_contribuyente")
     private Integer codigoContribuyente;
 
+    @NotEmpty(message = "El campo no debe de estar vacio")
+    @Size(max = 30, message = "Maximo 30 caracteres")
     @Column(name = "s_nombre")
     private String nombre;
 
+    @NotEmpty(message = "El campo no debe de estar vacio")
+    @Size(max = 30, message = "Maximo 30 caracteres")
     @Column(name = "s_apellido")
     private String apellido;
 
+    @NotEmpty(message = "El campo no debe de estar vacio")
+    @Size(min = 14, max = 14, message = "Exactamente 14 caracteres")
     @Column(name = "s_nit")
     private String nit;
 

@@ -11,6 +11,7 @@
   </head>
   <body style="font-family: 'Montserrat', sans-serif;">
     <div class="container mt-5">
+      <h1>Ingresar Contribuyente</h1>
       <form
         class="mt-5"
         method="POST"
@@ -60,6 +61,7 @@
           />
         </div>
         <div class="form-group">
+          <label for="importancia" style="display: block;">Importancia</label>
           <select th:field="*{importancia.cImportancia}">
             <option
               th:each="im : ${importancias}"
@@ -68,11 +70,11 @@
             />
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary mt-2">
           Guardar
         </button>
-        <a th:href="@{/listado}" class="btn btn-secondary">Ver Contribuyentes</a>
       </form>
+      <a th:href="@{/listado}" class="btn btn-secondary mt-3">Ver Contribuyentes</a>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
